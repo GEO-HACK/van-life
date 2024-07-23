@@ -8,7 +8,7 @@ export default function Home (){
             <p>Add adventure to your life by joining the #vanlife movement. Rent the perfect van to 
                 make your perfect road trip.
             </p>
-            <Link to =" vans"> find your van</Link>
+            <Link to ="/Vans"> find your van</Link>
         
         </div>
     )
