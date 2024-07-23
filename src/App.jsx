@@ -2,6 +2,7 @@ import React from "react";
 import Home from "./pages/home";
 import Vans from "./pages/vans";
 import About from "./pages/About";
+import VanDetail from "./pages/VanDetail";
 
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import './server'
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/vans" element={<Vans />} />
         <Route path="/about" element={<About />} />
+        <Route path="/vans/:id" element={< VanDetail/>} />
       </Routes>
     </BrowserRouter>
   );
