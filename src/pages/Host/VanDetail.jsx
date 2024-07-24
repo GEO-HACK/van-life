@@ -1,8 +1,16 @@
+import { Collection } from 'miragejs';
 import React from 'react'
-import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link,NavLink,Outlet, useParams, } from 'react-router-dom';
+
 
 export default function HostVanDetail() {
+
+    const activeStyles = {
+        fontWeight: 'bold',
+        textDecoration: 'underline',
+        color: '#161616'
+    }
+
 
     const [currentVan, setCurrentVan] = React.useState(null);
     const  params  = useParams(); //has not been destructured
@@ -13,14 +21,14 @@ export default function HostVanDetail() {
         .then(data => setCurrentVan(data.vans));
     }, []);
 
-    console.log(currentVan);
     if (!currentVan) return <p>loading...</p>;
 
     return (
         <section>
         
             <Link
-            to="/host/vans"
+            to="../"
+            relative='path'
             className='back-button'
             >&larr;<span>Back to all vans</span></Link>
 
@@ -40,7 +48,31 @@ export default function HostVanDetail() {
                     <h4>${currentVan.price}/day</h4>
                 </div>
             </div>
+            <nav className='host-van-detail-nav'>
+                <NavLink
+                 to='.'
+                 end
+                 style={({isActive})=>isActive ? activeStyles : null }
+                >Details</NavLink>
+
+                <NavLink
+                 to='pricing'
+                 
+                 style={({isActive})=>isActive ? activeStyles : null }
+                >pricing</NavLink>
+
+                <NavLink
+                 to='photos'
+                 style={({isActive})=>isActive ? activeStyles : null }
+                >photos</NavLink>
+                
+            
+
+            </nav>
+            <Outlet context={{ currentVan }} />
         </div>
+
+      
         </section>
     );
     }
