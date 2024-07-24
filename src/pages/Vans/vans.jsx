@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 
-export default function Vans() {
+export default function Vans({children}) {
     const [vans, setVans] = React.useState([])
     
     React.useEffect(() => {

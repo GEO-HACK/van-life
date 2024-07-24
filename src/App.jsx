@@ -1,29 +1,47 @@
 import React from "react";
 import Home from "./pages/home";
-import Vans from "./pages/vans";
+import Vans from "./pages/Vans/vans";
 import About from "./pages/About";
-import VanDetail from "./pages/VanDetail";
+import Layout from "./components/layout";
+import HostLayout from "./components/HostLayout";
+import VanDetail from "./pages/Vans/VanDetail";
+import Dashboard from "./pages/Host/Dashboard";
+import Income from "./pages/Host/Income";
+import Reviews from "./pages/Host/Reviews";
+import HostVans from "./pages/Host/vans"; 
+import HostVanDetail from "./pages/Host/VanDetail"; 
+
 
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import './server'
+import "./server";
 
 
 export default function App() {
   return (
     <BrowserRouter>
-      <header>
-      <Link className='site-logo' to="/">#vanIt</Link>
-        <nav>
-          <Link to="/vans">Vans</Link>
-          <Link to="/about">About</Link>
-        </nav>
-      </header>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/vans" element={<Vans />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/vans/:id" element={< VanDetail/>} />
+        {/* home path */}
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          
+            {/* vans path */}
+          <Route path="vans"  >
+            <Route index element={<Vans />}/>
+            <Route path=":id" element={<VanDetail />} />
+          </Route>
+           
+          {/* host path */}
+          <Route path="host" element={<HostLayout/>}>
+            <Route index element={<Dashboard />} />
+            <Route path="income" element={<Income />} />
+            <Route path="reviews" element={<Reviews />} />
+            <Route path="vans" element={<HostVans />} />
+            <Route path="vans/:id" element={<HostVanDetail />} />
+          </Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );
 }
+
