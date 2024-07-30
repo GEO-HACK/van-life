@@ -14,6 +14,8 @@ import HostVanPricing from "./pages/Host/HostVanPricing";
 import HostVanPhotos from "./pages/Host/HostVanPhotos";
 import HostVanInfo from "./pages/Host/HostVanInfo";
 
+import Error from './components/error'
+
 
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import "./server";
@@ -47,6 +49,7 @@ export default function App() {
               
             </Route>
           </Route>
+          <Route path="*" element={<Error/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

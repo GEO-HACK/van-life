@@ -16,17 +16,6 @@ createServer({
 
 
 
-        for (let i = 7; i <= 26; i++) {
-            server.create("van", {
-                id: String(i),
-                name: `Van ${i}`,
-                price: Math.floor(Math.random() * 100) + 50,
-                description: `Van ${i} is a modern vehicle designed for comfort and adventure. Equipped with the latest technology and features, it's perfect for long trips and weekend getaways.`,
-                imageUrl: `https://example.com/images/van${i}.png`,
-                type: ["simple", "rugged", "luxury"][Math.floor(Math.random() * 3)],
-                hostId: ["123", "456", "789"][Math.floor(Math.random() * 3)]
-            });
-        }
     },
 
     routes() {
