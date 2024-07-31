@@ -32,8 +32,8 @@ const router = createBrowserRouter(
       <Route path="about" element={<About />} />
 
       {/* vans path */}
-      <Route path="vans">
-        <Route index element={<Vans />} />
+      <Route path="vans" >
+        <Route index element={<Vans />} loader={vansLoader} />
         <Route path=":id" element={<VanDetail />} />
       </Route>
 
@@ -42,7 +42,7 @@ const router = createBrowserRouter(
         <Route index element={<Dashboard />} />
         <Route path="income" element={<Income />} />
         <Route path="reviews" element={<Reviews />} />
-        <Route path="vans" element={<HostVans />}  loader={vansLoader} />
+        <Route path="vans" element={<HostVans />}   />
         <Route path="vans/:id" element={<HostVanDetail />}>
           <Route index element={<HostVanInfo />} />
           <Route path="pricing" element={<HostVanPricing />} />

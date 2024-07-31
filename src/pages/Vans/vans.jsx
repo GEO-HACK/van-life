@@ -1,21 +1,30 @@
 import React from "react";
 import { getVans } from "../../api"
-import { Link,useSearchParams ,useLoaderData} from "react-router-dom";
+import { Link,useSearchParams ,useLoaderData } from "react-router-dom";
 
-export function loader(){
-    return getVans()
+
+
+
+export async function loader(){
+    console.log("loader has been called")
+    const vans = await getVans()
+    console.log("this are the vans",vans)
+    return vans
+    
 }
-
-
 
 export default function Vans({children}) {
     const vans = useLoaderData()
+    console.log(vans)
+   
+   
     // const [vans, setVans] = React.useState([])
-    // const[loading, setLoading]= React.useState(false)
-    // const[error, setError]= React.useState(null)
+     const[loading, setLoading]= React.useState(false)
+    const[error, setError]= React.useState(null)
+  
   
     
-
+    
     const [searchParams, setSearchParams] = useSearchParams()
     const typeFilter = searchParams.get('type');
     
@@ -36,9 +45,7 @@ export default function Vans({children}) {
     //     loadVans()
     // }, [])
 
-    console.log("these are the loaded vans",vans);
-
-    const filteredVans = vans ? (typeFilter ? vans.filter((van) => van.type ===typeFilter ): vans) : [];
+    const filteredVans = typeFilter ? vans.filter((van) => van.type ===typeFilter ): vans;
 
 
     const vanElements = filteredVans.map(van=> (
@@ -72,12 +79,12 @@ export default function Vans({children}) {
             return prevparams
         })
     }
-    // if (loading){
-    //     return <h1>loading...</h1>
-    // }
-    // if (error){
-    //     return <h1>There was an error: {error}</h1>
-    // }
+    if (loading){
+        return <h1>loading...</h1>
+    }
+    if (error){
+        return <h1>There was an error: {error}</h1>
+    }
     
     return (
         <div className="van-list-container">
