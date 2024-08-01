@@ -13,8 +13,10 @@ import HostVanDetail from "./pages/Host/VanDetail";
 import HostVanPricing from "./pages/Host/HostVanPricing";
 import HostVanPhotos from "./pages/Host/HostVanPhotos";
 import HostVanInfo from "./pages/Host/HostVanInfo";
-
-import Error from "./components/error";
+import Errorroute from "./components/error"
+import Error from "./pages/Error/error";
+import Login from "./pages/login"
+import AuthRequired from "./components/AuthRequired"
 
 import {
    Route,
@@ -27,17 +29,28 @@ import "./server";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
+    <Route path="/" element={<Layout />} errorElement={<Errorroute/>}>
       <Route index element={<Home />} />
       <Route path="about" element={<About />} />
+      <Route
+       path="login"
+       element={<Login/>}/>
+
 
       {/* vans path */}
       <Route path="vans" >
-        <Route index element={<Vans />} loader={vansLoader} />
+        <Route 
+        index 
+        element={<Vans />}
+        
+         loader={vansLoader}
+          />
         <Route path=":id" element={<VanDetail />} />
       </Route>
 
       {/* host path */}
+      <Route element={<AuthRequired/>}>
+
       <Route path="host" element={<HostLayout />}>
         <Route index element={<Dashboard />} />
         <Route path="income" element={<Income />} />
@@ -48,6 +61,7 @@ const router = createBrowserRouter(
           <Route path="pricing" element={<HostVanPricing />} />
           <Route path="photos" element={<HostVanPhotos />} />
         </Route>
+      </Route>
       </Route>
       <Route path="*" element={<Error />} />
     </Route>
