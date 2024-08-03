@@ -33,7 +33,7 @@ export default function Header() {
         <img src={imageUrl}
          className="login-icon" />
         </Link>
-        <button onClick = {fakeLogOut}>x</button>
+        <button  className="logout"onClick = {fakeLogOut}>logOut</button>
       </nav>
     </header>
   );
